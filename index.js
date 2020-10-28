@@ -6,12 +6,24 @@
  */
 module.exports = function (hours, minutes, interval) {
   
-  hours = hours + Math.floor((minutes + interval) / 60);
-  minutes = minutes + ((minutes + interval) % 60);
+  var hour = '';
+  var minute = '';
 
-  if (hours < 10 && minutes < 10) {
-    return "0" + hours + ":" + "0" + minutes;
+  hours = hours + Math.floor((minutes + interval) / 60);
+  hours = hours % 24;
+  minutes = ((minutes + interval) % 60);
+
+  if (hours < 10) {
+    hour = '0' + hours;
   } else {
-    return hours + ":" + minutes;
+    hour = hours;
   }
+
+  if (minutes < 10) {
+    minute = '0' + minutes;
+  } else {
+    minute = minutes;
+  }
+
+  return hour + ':' + minute;
 };
